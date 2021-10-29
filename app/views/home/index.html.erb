@@ -1,0 +1,14 @@
+<h1>Employee Performance Review System</h1>
+ <h2>Users List</h2>
+<% @users.each do |user| %>
+
+    <%= user.first_name %><br>
+    <%= user.last_name %><br>
+    <%= user.email %><br>
+    <%= user.phone %><br>
+    <%= user.role %><br>
+    <%= user.joining_date %><br>
+
+
+<% end %>
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
