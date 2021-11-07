@@ -1,14 +1,127 @@
-<h1>Employee Performance Review System</h1>
- <h2>Users List</h2>
-<% @users.each do |user| %>
 
-    <%= user.first_name %><br>
-    <%= user.last_name %><br>
-    <%= user.email %><br>
-    <%= user.phone %><br>
-    <%= user.role %><br>
-    <%= user.joining_date %><br>
+<!--  <h1>Employee Performance Review System</h1> -->
 
 
-<% end %>
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+<div class="jumbotron jumbotron-fluid">
+  <%if user_signed_in? %>
+  <div class="container">
+    <h2 class="display-4">Welcome <%= current_user.first_name %> <%= current_user.last_name %></h2>
+    <p class="lead"> <%= current_user.role%> of Engin Technologies.</p>
+  </div>
+</div>
+
+<div class = "container">
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark ">
+    <tr>
+      <th>First_name</th>
+      <th>Last_name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Joining_Date</th>
+      <th>Role</th>
+      <th>Assigned Manager</th>
+      <th>Remarks</th>
+      <th>Action</th>
+
+    </tr>
+    <tbody>
+    <% @users.each do |user| %>
+
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td><%= user.joining_date %></td>
+        <td><%= user.role %></td>
+
+        <%if user.role == "Employee" || "HR"%>
+          <td><%=user.assigned_manager %></td>
+        <%end %>
+
+        <%if user.surveys.present?%>
+          <td><%=user.surveys.last.remarks%></td>
+        <%else%>
+          <td>No Remarks Added</td>
+        <%end %>
+
+
+        <% if current_user.role == "HR" %>
+          <td> <%= link_to 'Edit User', edit_home_path(id: user.id) ,  class: "btn btn-secondary" %></td>
+          <td><%= link_to 'Delete', home_path(user), method: :delete,  class: "btn btn-danger",  data: { confirm: "Are you sure?" } %></td>
+
+
+          <%if user.surveys.present?%>
+          <td><%= link_to 'View Form', survey_path(id: user.id) ,  class: "btn btn-success" %></td>
+          <%else %>
+          <td><%= link_to 'Form Not Present', root_path ,   class: "btn btn-warning" %></td>
+          <%end %>
+
+        <%end %>
+
+        <% if current_user.role == "Manager" %>
+        <%if user.surveys.present?%>
+          <td><%= link_to 'Employee Filled Form', survey_path(id: user.id) ,  class: "btn btn-success" %></td>
+        <%else %>
+          <td><%= link_to 'Form Not Present', root_path ,   class: "btn btn-warning" %></td>
+        <%end %>
+        <%end %>
+
+        <% if current_user.role == "Manager" %>
+          <%if user.surveys.present?%>
+            <td><%= link_to 'Form for Manager', new_survey_path(user_id: user.id) ,  class: "btn btn-success" %></td>
+          <%else %>
+            <td><%= link_to 'Employee Not Filled Form', root_path ,   class: "btn btn-warning" %></td>
+          <%end %>
+        <%end %>
+
+
+
+        <td> <%= link_to 'Show User', home_path(id: user.id) ,  class: "btn btn-info" %></td>
+      </tr>
+
+    <% end %>
+    </tbody>
+  </table>
+
+    <div>
+    <% if current_user.role == "HR" %>
+      <%= link_to 'Create User', sign_up_path ,  class: "btn btn-primary" %>
+    <% end %>
+    </div>
+
+
+    <div>
+    <% if current_user.role == "Employee" %>
+      <%= link_to 'Open Form', new_survey_path ,  class: "btn btn-secondary" %>
+    <% end %>
+    </div>
+
+
+</div>
+
+
+  <%else%>
+    <div class="jumbotron jumbotron-fluid" style="margin-left: 350px; margin-top: 100px" >
+
+        <h2 class="display-4">Welcome to  ActiveHR</h2>
+        <p class="lead"> You need to Sign In!</p>
+
+<!--        <style>-->
+<!--            .footer-clean{-->
+<!--                position: absolute !important;-->
+<!--            }-->
+<!--        </style>-->
+
+    </div>
+  <%end %>
+
+  </div>
+
+<!--  <style>-->
+<!--      .footer-clean{-->
+<!--          position: absolute !important;-->
+<!--      }-->
+<!--  </style>-->
+

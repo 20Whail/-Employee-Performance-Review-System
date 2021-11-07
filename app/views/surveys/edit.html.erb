@@ -1,0 +1,30 @@
+
+<%if current_user.role == "HR" %>
+<div class = "container">
+  <div class = "remarks" style="margin-left: 620px ; color:whitesmoke">
+    <h1><strong>Remarks Form</strong></h1>
+  </div><br>
+  <div class="card">
+    <div class="card-header">
+      <h2>Rating</h2>
+    </div>
+    <%= form_for(@survey,:url=>survey_path, local: true) do |f| %>
+      <div class="card-body">
+        <h5 class="card-title">Please use 1-5 as 1-Unsatisfactory, 2- Need Improvement, 3- Average, 4-Good and 5- Excellent.</h5><br>
+      <div class="field form-group">
+       <h3> <%= f.label :"Remarks"%></h3>
+
+        <%= f.number_field :remarks, class:"form-control form-control-sm" ,  autofocus: true %>
+      </div>
+
+        <br>
+
+          <div class="actions">
+            <%= f.submit "Submit", class:"btn btn-secondary" %>
+          </div>
+
+        </div>
+      </div>
+      </div>
+    <%end %>
+<%end %>

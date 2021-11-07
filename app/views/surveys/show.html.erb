@@ -1,0 +1,108 @@
+<div class="container">
+
+  <h1>Survey Form Filled By Employee</h1> <br>
+</div>
+
+
+<table class="table table-striped table-hover">
+  <thead class="thead-dark ">
+  <tr>
+
+    <th>Quality</th>
+    <th>Reliability</th>
+    <th>Job_knowledge</th>
+    <th>Attendence</th>
+    <th>Commitment</th>
+    <th>Creativity</th>
+    <th>Adherence_to_policy</th>
+    <th>Lead</th>
+    <th>Improvement_needed</th>
+    <th>Accomplishments</th>
+    <th>Recommendations</th>
+    <th>Submitted By</th>
+    <th colspan="3"></th>
+  </tr>
+  <tbody>
+  <tr>
+    <td><%= @employee_survey.quality %></td>
+    <td><%= @employee_survey.reliability %></td>
+    <td><%= @employee_survey.job_knowledge %></td>
+    <td><%= @employee_survey.attendence %></td>
+    <td><%= @employee_survey.commitment %></td>
+    <td><%= @employee_survey.creativity %></td>
+    <td><%= @employee_survey.adherence_to_policy %></td>
+    <td><%= @employee_survey.lead %></td>
+    <td><%= @employee_survey.improvement_needed %></td>
+    <td><%= @employee_survey.accomplishments %></td>
+    <td><%= @employee_survey.recommendations %></td>
+    <td><%= @employee_survey.submitted_by %>
+
+  </tbody>
+</table>
+
+
+
+
+
+
+<% if current_user.role == "Manager"%>
+
+<div class="container">
+
+  <h1>Survey Form Filled By Manager</h1> <br>
+</div>
+
+
+<table class="table table-striped table-hover">
+  <thead class="thead-dark ">
+  <tr>
+
+    <th>Quality</th>
+    <th>Reliability</th>
+    <th>Job_knowledge</th>
+    <th>Attendence</th>
+    <th>Commitment</th>
+    <th>Creativity</th>
+    <th>Adherence_to_policy</th>
+    <th>Lead</th>
+    <th>Improvement_needed</th>
+    <th>Accomplishments</th>
+    <th>Recommendations</th>
+    <th>Submitted By</th>
+    <th colspan="3"></th>
+  </tr>
+  <tbody>
+  <tr>
+    <td><%= @manager_survey.quality %></td>
+    <td><%= @manager_survey.reliability %></td>
+    <td><%= @manager_survey.job_knowledge %></td>
+    <td><%= @manager_survey.attendence %></td>
+    <td><%= @manager_survey.commitment %></td>
+    <td><%= @manager_survey.creativity %></td>
+    <td><%= @manager_survey.adherence_to_policy %></td>
+    <td><%= @manager_survey.lead %></td>
+    <td><%= @manager_survey.improvement_needed %></td>
+    <td><%= @manager_survey.accomplishments %></td>
+    <td><%= @manager_survey.recommendations %></td>
+    <td><%= @manager_survey.submitted_by %></td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+<% end %>
+      <%if current_user.role == "HR" %>
+          <div>
+              <%= link_to 'Add Remarks', edit_survey_path(@employee_survey.user) , class: "btn btn-secondary"%>
+          </div>
+      <%end %>
+<br>
+      <div>
+        <%= link_to 'Back', root_path ,  class: "btn btn-secondary" %>
+      </div>
+<style>
+    .footer-clean{
+        position: absolute !important;
+    }
+</style>

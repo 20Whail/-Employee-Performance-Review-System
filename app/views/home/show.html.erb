@@ -1,0 +1,26 @@
+
+<div class="jumbotron" >
+  <div class = "container">
+    <h1 class="display-4">
+      <%= @user.first_name %>
+      <%= @user.last_name %>
+    </h1>
+    <p class="lead">
+
+      <%= @user.email %> |
+      <%= @user.phone %> |
+      <%= @user.role %> |
+      <%= @user.joining_date %>
+    </p>
+    <hr class="my-4">
+    <br>
+    <%= link_to 'Back', root_path ,  class: "btn btn-secondary" %>
+  </div>
+</div>
+
+
+<!--<style>-->
+<!--    .footer-clean{-->
+<!--        position: absolute !important;-->
+<!--    }-->
+<!--</style>-->

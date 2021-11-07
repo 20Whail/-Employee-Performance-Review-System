@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: { HR: 0, Employee: 1, Manager: 2 }
-  has_many :forms
+  has_many :surveys, :dependent => :delete_all
 
 end
