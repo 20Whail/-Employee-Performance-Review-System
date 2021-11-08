@@ -38,12 +38,15 @@
       <td><%= question.recommendations %></td>
         <td><%= question.submitted_by %></td>
 
-      <td> <%= link_to 'Show form', survey_path(id: question.id) ,  class: "btn btn-secondary" %></td>
+<!--      <td> <%#= link_to 'Show form', survey_path(id: question.id) ,  class: "btn btn-secondary" %></td>-->
     <%end %>
       <%end %>
   </tbody>
-</table>
 
+</table>
+<div>
+  <%= link_to 'Back', root_path ,  class: "btn btn-secondary" %>
+</div>
 <style>
     .footer-clean{
         position: absolute !important;

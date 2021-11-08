@@ -5,26 +5,25 @@ class SurveysController < ApplicationController
   end
 
   def show
+
+
+
    user = User.find(params[:id])
    if current_user.role == "Manager"
      @manager_survey = Survey.where(user_id: user.id,submitted_by: current_user.email).last
    end
    @employee_survey = Survey.where(user_id: user.id,submitted_by: user.email).last
   end
+
+
+
   def edit
     user = User.find(params[:id])
     @survey = Survey.where(user_id: user.id,submitted_by: user.email).last
   end
-  def update
-    user = User.find(params[:id])
-    @survey = Survey.where(user_id: user.id,submitted_by: user.email).last
-    if @survey.update(form_params)
-      debugger
-      redirect_to (survey_path(id:user.id))
-    else
-      render 'edit'
-    end
-  end
+
+
+
 
 
   def new
@@ -38,6 +37,17 @@ class SurveysController < ApplicationController
       redirect_to survey_path(params[:survey][:user_id]) , flash: { success: "Succesfully created the form"}
     else
       render 'new'
+    end
+  end
+
+
+  def update
+    user = User.find(params[:id])
+    @survey = Survey.where(user_id: user.id,submitted_by: user.email).last
+    if @survey.update(form_params)
+      redirect_to (survey_path(id:user.id))
+    else
+      render 'edit'
     end
   end
 

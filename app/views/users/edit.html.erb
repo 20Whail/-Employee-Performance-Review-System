@@ -255,8 +255,8 @@
 
 
         <div class="card-body">
-
-          <div style="text-align: center; margin-top: -385px; padding-right: 0">
+<!--          <div style="text-align: center; margin-top: -385px; padding-right: 0">-->
+          <div style="margin-left: 0">
             <h2>Professional Information</h2>
             <div class="field form-group">
               <%= f.label :role %><br />
@@ -278,6 +278,9 @@
               <%= f.submit "Update",  class: "btn btn-primary" %>
             </div>
             <br>
+            <%= link_to 'Back', root_path ,   class: "btn btn-secondary" %>
+            <br>
+
     <% end %>
 
 

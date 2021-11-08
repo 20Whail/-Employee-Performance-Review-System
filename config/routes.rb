@@ -3,16 +3,16 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: "home#index"
-  # resources :home
-   get 'sign_up', to: 'home#new'
-    post 'sign_up', to: 'home#create'
+  root to: "users#index"
+  # resources :users
+   get 'sign_up', to: 'users#new'
+    post 'sign_up', to: 'users#create'
 
 
-  get 'edit_home', to: 'home#edit'
-  post 'edit_home', to: 'home#update'
+  get 'edit_home', to: 'users#edit'
+  post 'edit_home', to: 'users#update'
   resources :home
   resources :surveys
-
+  resources :users
 
 end
