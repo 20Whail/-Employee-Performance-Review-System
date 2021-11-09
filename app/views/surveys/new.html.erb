@@ -1,132 +1,132 @@
-
-  <div class = "review" style="margin-left: 620px ; color:whitesmoke">
+ <div class = "review" style="margin-left: 620px ; color:whitesmoke">
     <h1><strong>Review Form</strong></h1>
-  </div><br>
-  <div class="card">
-    <div class="card-header">
-      <h2>Rating</h2>
+ </div>
+ <br>
+<div class="card">
+  <div class="card-header">
+    <h2>Rating</h2>
+  </div>
+  <%= simple_form_for(@question, as: :survey, method: :post, url: surveys_path) do |f| %>
+    <div class="card-body">
+
+      <h5 class="card-title">Please use 1-5 as 1-Unsatisfactory, 2- Need Improvement, 3- Average, 4-Good and 5- Excellent.</h5>
+      <p class="card-text">You can use decimal as e.g. 3.5. Be fair on rating and 5 should be set only when highly great job was done e g
+        Consistently worked with Company and done such work company got fame publicly/community and lead to great success of company and not losing project in full year.</p>
+
+      <div class="field form-group">
+        <%= f.label :quality, "Quality - The extent to which an employee's work is completed thoroughly and correctly following established process & procedures. Required paperwork is thorough and neat."%>
+
+        <%= f.number_field :quality, :max=>1 ,class:"form-control form-control-sm" ,  autofocus: true %>
+      </div>
     </div>
-    <%= form_with(model: Survey, local: true) do |f| %>
-      <div class="card-body">
 
-        <h5 class="card-title">Please use 1-5 as 1-Unsatisfactory, 2- Need Improvement, 3- Average, 4-Good and 5- Excellent.</h5>
-        <p class="card-text">You can use decimal as e.g. 3.5. Be fair on rating and 5 should be set only when highly great job was done e g
-          Consistently worked with Company and done such work company got fame publicly/community and lead to great success of company and not losing project in full year.</p>
+    <div class="card-body">
 
-        <div class="field form-group">
-          <%= f.label :"Quality - The extent to which an employee's work is completed thoroughly and correctly following established process & procedures. Required paperwork is thorough and neat."%>
+      <div class="field form-group">
+        <%= f.label :reliability, "Productivity / Independence / Reliability - The extent to which an employee produces a significant volume of work efficiently in a specified period of time. Ability to work independently with little or no direction/ follow-up to complete tasks/job assignment."%><br >
+        <%= f.number_field :reliability,  class:"form-control form-control-sm" , autofocus: true %>
+      </div>
+    </div>
 
-          <%= f.number_field :quality, :max=>1 ,class:"form-control form-control-sm" ,  autofocus: true %>
-        </div>
+    <div class="card-body">
+      <div class="field form-group">
+        <%= f.label :job_knowledge, "Job Knowledge - The extent to which an employee perform the job. Employee possesses the practical and technical knowledge required of the job. " %><br />
+        <%= f.number_field :job_knowledge, class:"form-control form-control-sm"  , autofocus: true %>
       </div>
 
-      <div class="card-body">
+    </div>
 
-        <div class="field form-group">
-          <%= f.label :"Productivity / Independence / Reliability - The extent to which an employee produces a significant volume of work efficiently in a specified period of time. Ability to work independently with little or no direction/ follow-up to complete tasks/job assignment."%><br >
-          <%= f.number_field :reliability,  class:"form-control form-control-sm" , autofocus: true %>
-        </div>
+    <div class="card-body">
+
+      <div class="field form-group">
+        <%= f.label :attendence, "Attendance -The extent to which an employee is punctual, observes prescribed work break/meal periods and has an acceptable overall attendance record. Employee's willingness to work overtime as required. Employee comes in as the time prescribed by office rules. " %><br />
+        <%= f.number_field :attendence,  class:"form-control form-control-sm"  , autofocus: true %>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <div class="field form-group">
+        <%= f.label :commitment, "Interpersonal Relationships / Cooperation /Commitment - The extent to which employee is willing and demonstrates the ability to cooperate, work and communicate with coworkers, supervisors, subordinates and/or outside contacts. Employee accepts and responds to change in a positive manner. Accepts job assignments and additional duties willingly, takes responsibility for own performance and job assignments. " %><br />
+        <%= f.number_field :commitment,  class:"form-control form-control-sm"  , autofocus: true %>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <div class="field form-group">
+        <%= f.label :creativity, "Initiative/ Creativity - The extent to which an employee seeks out new assignments, proposes improved work methods, suggests ideas to eliminate waste, finds new and better ways of doing things. " %><br />
+        <%= f.number_field :creativity, class:"form-control form-control-sm"  ,  autofocus: true %>
       </div>
 
-      <div class="card-body">
-        <div class="field form-group">
-          <%= f.label :"Job Knowledge - The extent to which an employee perform the job. Employee possesses the practical and technical knowledge required of the job. " %><br />
-          <%= f.number_field :job_knowledge, class:"form-control form-control-sm"  , autofocus: true %>
-        </div>
+    </div>
 
+    <div class="card-body">
+      <div class="field form-group">
+        <%= f.label :adherence_to_policy, "Adherence to Policy - The extent to which the employees follows company policies, procedures and work conduct rules. Complies with and follows all safety rules and regulations, wears required safety equipment. " %><br />
+        <%= f.number_field :adherence_to_policy, class:"form-control form-control-sm"  , autofocus: true %>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="field form-group">
+        <%= f.label :lead, "Lead (if applicable)- The extent to which the employee demonstrates proper judgment and decision-making skills when directing others. Directs work flow in assigned areas effectively to meet production / area goals " %><br />
+        <%= f.number_field :lead,  class: "form-control form-control-sm"  ,  autofocus: true %>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <div class="field form-group">
+        <%= f.label :improvement_needed, "Specific areas of needed improvement and goals set for next review: " %><br />
+        <%= f.number_field :improvement_needed ,  class:"form-control form-control-sm"  , autofocus: true %>
       </div>
 
-      <div class="card-body">
+    </div>
 
-        <div class="field form-group">
-          <%= f.label :"Attendance -The extent to which an employee is punctual, observes prescribed work break/meal periods and has an acceptable overall attendance record. Employee's willingness to work overtime as required. Employee comes in as the time prescribed by office rules. " %><br />
-          <%= f.number_field :attendence,  class:"form-control form-control-sm"  , autofocus: true %>
-        </div>
+    <div class="card-body">
+      <div class="field form-group">
+        <%= f.label :accomplishments, "Accomplishments or new abilities demonstrated since last review? " %><br />
+        <%= f.number_field :accomplishments, class:"form-control form-control-sm"  , autofocus: true %>
       </div>
 
-      <div class="card-body">
+    </div>
 
-        <div class="field form-group">
-          <%= f.label :"Interpersonal Relationships / Cooperation /Commitment - The extent to which employee is willing and demonstrates the ability to cooperate, work and communicate with coworkers, supervisors, subordinates and/or outside contacts. Employee accepts and responds to change in a positive manner. Accepts job assignments and additional duties willingly, takes responsibility for own performance and job assignments. " %><br />
-          <%= f.number_field :commitment,  class:"form-control form-control-sm"  , autofocus: true %>
-        </div>
+    <div class="card-body">
+      <div class="field form-group">
+        <%= f.label :recommendations, "Recommendations for professional development (seminars, training, schooling, etc.) " %><br />
+        <%= f.number_field :recommendations,  class:"form-control form-control-sm"  , autofocus: true %>
       </div>
+    </div>
 
-      <div class="card-body">
-
-        <div class="field form-group">
-          <%= f.label :"Initiative/ Creativity - The extent to which an employee seeks out new assignments, proposes improved work methods, suggests ideas to eliminate waste, finds new and better ways of doing things. " %><br />
-          <%= f.number_field :creativity, class:"form-control form-control-sm"  ,  autofocus: true %>
-        </div>
-
+    <div class="card-body">
+      <div class="field form-group">
+        <%= f.text_field :submitted_by , class:"form-control form-control-sm"  , hidden:true, value:current_user.email ,autofocus: true %>
       </div>
+    </div>
 
-      <div class="card-body">
-        <div class="field form-group">
-          <%= f.label :"Adherence to Policy - The extent to which the employees follows company policies, procedures and work conduct rules. Complies with and follows all safety rules and regulations, wears required safety equipment. " %><br />
-          <%= f.number_field :adherence_to_policy, class:"form-control form-control-sm"  , autofocus: true %>
-        </div>
-      </div>
-
-      <div class="card-body">
-        <div class="field form-group">
-          <%= f.label :"Lead (if applicable)- The extent to which the employee demonstrates proper judgment and decision-making skills when directing others. Directs work flow in assigned areas effectively to meet production / area goals " %><br />
-          <%= f.number_field :lead,  class: "form-control form-control-sm"  ,  autofocus: true %>
-        </div>
-      </div>
-
-      <div class="card-body">
-
-        <div class="field form-group">
-          <%= f.label :"Specific areas of needed improvement and goals set for next review: " %><br />
-          <%= f.number_field :improvement_needed ,  class:"form-control form-control-sm"  , autofocus: true %>
-        </div>
-
-      </div>
-
-      <div class="card-body">
-        <div class="field form-group">
-          <%= f.label :"Accomplishments or new abilities demonstrated since last review? " %><br />
-          <%= f.number_field :accomplishments, class:"form-control form-control-sm"  , autofocus: true %>
-        </div>
-
-      </div>
-
-      <div class="card-body">
-        <div class="field form-group">
-          <%= f.label :"Recommendations for professional development (seminars, training, schooling, etc.) " %><br />
-          <%= f.number_field :recommendations,  class:"form-control form-control-sm"  , autofocus: true %>
-        </div>
-      </div>
-
-      <div class="card-body">
-        <div class="field form-group">
-          <%= f.text_field :submitted_by , class:"form-control form-control-sm"  , hidden:true, value:current_user.email ,autofocus: true %>
-        </div>
-      </div>
-
-      <div class="card-body">
-        <div class="field form-group">
-          <% if current_user.role == "Employee" %>
-           <%=f.number_field :user_id, hidden:true, class:"form-control form-control-sm"  , value: current_user.id  %>
-          <%else  %>
-            <%=f.number_field :user_id, hidden:true, class:"form-control form-control-sm"  , value: params[:user_id]  %>
-          <% end %>
-            </div>
-
-
-        <div class="card-body">
-          <div class="actions">
-            <%= f.submit "Submit" %>
+    <div class="card-body">
+      <div class="field form-group">
+        <% if current_user.role == "Employee" %>
+         <%=f.number_field :user_id, hidden:true, class:"form-control form-control-sm"  , value: current_user.id  %>
+        <%else  %>
+          <%=f.number_field :user_id, hidden:true, class:"form-control form-control-sm"  , value: params[:user_id]  %>
+        <% end %>
           </div>
 
-          <br>
-          <div>
-            <%= link_to 'Back', root_path ,  class: "btn btn-secondary" %>
-          </div>
 
+      <div class="card-body">
+        <div class="actions">
+          <%= f.submit "Submit" %>
         </div>
-      </div>
-      </div>
 
-    <%end %>
+        <br>
+        <div>
+          <%= link_to 'Back', root_path ,  class: "btn btn-secondary" %>
+        </div>
+
+      </div>
+    </div>
+  <%end %>
+</div>
+

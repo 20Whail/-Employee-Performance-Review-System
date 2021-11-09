@@ -1,0 +1,8 @@
+
+<% if current_user.role == "Manager" %>
+  <%if user.surveys.present?%>
+    <td><%= link_to 'Form for Manager', new_survey_path(user_id: user.id) ,  class: "btn btn-success" %></td>
+  <%else %>
+    <td><%= link_to 'Employee Not Filled Form', root_path ,   class: "btn btn-warning" %></td>
+  <%end %>
+<%end %>

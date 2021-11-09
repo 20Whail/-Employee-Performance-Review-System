@@ -50,8 +50,9 @@ class UsersController < ApplicationController
   def update
 
     @user = User.find(params[:id])
+
     if @user.update(user_params)
-      UserMailer.name_update(@user).deliver
+
       redirect_to root_path , flash: { success: "Updated Sucessfully!" }
     else
       render :edit
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if @user.delete
+    if @user.destroy
       flash = {notice: "Sucessfully friend deleted!"}
     else
       flash = {error: "Something went wrong!"}

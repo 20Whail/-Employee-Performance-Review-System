@@ -1,0 +1,19 @@
+<%if user.surveys.present?%>
+  <% case user.surveys.last.remarks %>
+     <% when 1 %>
+       <% remark =  "Unsatisfactory" %>
+     <% when 2 %>
+       <% remark ="Need Improvement" %>
+     <% when 3 %>
+       <%remark = "Average"%>
+     <% when 4 %>
+        <%remark =  "Good"%>
+     <% when 5 %>
+        <%remark ="Excellent" %>
+     <%else %>
+       <%remark ="No Remarks"%>
+     <% end  %>
+  <td><%=remark%></td>
+  <%else %>
+  <th></th>
+<%end %>

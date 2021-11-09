@@ -1,0 +1,31 @@
+<% if current_user.role == "HR" %>
+  <td> <%= link_to 'Edit User', edit_user_path(id: user.id) ,  class: "btn btn-secondary" %></td>
+  <td><%= link_to 'Delete', user_path(user), method: :delete,  class: "btn btn-danger",  data: { confirm: "Are you sure?" } %></td>
+
+
+  <%if user.surveys.present? && user.role == "Employee"%>
+    <td><%= link_to 'View Form', survey_path(id: user.id) ,  class: "btn btn-success" %></td>
+  <%else %>
+    <%if user.role != 'Manager' %>
+    <td><%= link_to 'Form Not Present', root_path ,   class: "btn btn-warning" %></td>
+      <%end %>
+  <%end %>
+
+<%end %>
+
+
+<%if current_user.role != "HR" && user.role != 'Manager' %>
+  <%if user.surveys.present? && user.role == "Employee"%>
+    <td><%= link_to 'View Form', survey_path(id: user.id) ,  class: "btn btn-success" %></td>
+  <%else %>
+    <td><%= link_to 'Form Not Present', root_path ,   class: "btn btn-warning" %></td>
+  <%end %>
+<%end %>
+
+
+<!--<div>-->
+  <%# if current_user.role == "HR" %>
+    <%#= link_to 'Create User', sign_up_path ,  class: "btn btn-primary" %>
+    <%#= link_to 'All Review Forms', surveys_path ,  class: "btn btn-primary" %>
+  <%# end %>
+<!--</div>-->

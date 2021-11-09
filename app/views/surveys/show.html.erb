@@ -1,3 +1,4 @@
+
 <div class="container">
 
   <h1>Survey Form Filled By Employee</h1> <br>
@@ -20,6 +21,7 @@
     <th>Accomplishments</th>
     <th>Recommendations</th>
     <th>Submitted By</th>
+    <th>Total Score</th>
     <th colspan="3"></th>
   </tr>
   <tbody>
@@ -35,17 +37,16 @@
     <td><%= @employee_survey.improvement_needed %></td>
     <td><%= @employee_survey.accomplishments %></td>
     <td><%= @employee_survey.recommendations %></td>
-    <td><%= @employee_survey.submitted_by %>
-
+    <td><%= @employee_survey.submitted_by %></td>
+    <td><%= @employee_survey.quality + @employee_survey.reliability + @employee_survey.job_knowledge + @employee_survey.attendence + @employee_survey.commitment + @employee_survey.creativity + @employee_survey.adherence_to_policy +  @employee_survey.lead + @employee_survey.improvement_needed + @employee_survey.accomplishments + @employee_survey.recommendations %></td>
   </tbody>
 </table>
 
 
 
 
-
-
-<% if current_user.role == "Manager"%>
+<% if @manager_survey.present?%>
+  <%# if current_user.role == "Manager" || "HR" && @manager_survey%>
 
 <div class="container">
 
@@ -85,6 +86,8 @@
     <td><%= @manager_survey.accomplishments %></td>
     <td><%= @manager_survey.recommendations %></td>
     <td><%= @manager_survey.submitted_by %></td>
+    <td><%= @manager_survey.quality + @manager_survey.reliability + @manager_survey.job_knowledge + @manager_survey.attendence + @manager_survey.commitment + @manager_survey.creativity + @manager_survey.adherence_to_policy +  @manager_survey.lead + @manager_survey.improvement_needed + @manager_survey.accomplishments + @manager_survey.recommendations %></td>
+
   </tr>
   </tbody>
 </table>
@@ -92,7 +95,7 @@
 
 
 <% end %>
-      <%if current_user.role == "HR" %>
+      <%if current_user.role == "HR" && @manager_survey %>
           <div>
               <%= link_to 'Add Remarks', edit_survey_path(@employee_survey.user) , class: "btn btn-secondary"%>
           </div>

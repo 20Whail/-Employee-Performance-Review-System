@@ -94,6 +94,7 @@
 
 
 
+
  <div class ="container">
    <div class="card">
      <div class="card-header">
@@ -181,3 +182,18 @@
    </div>
  </div>
  </div>
+
+
+<script>
+  $('#user_role').change(function() {
+     let role = $('#user_role').val()
+      if (role == '2')
+      {
+          $('#user_assigned_manager').hide()
+      }
+      else
+      {
+          $('#user_assigned_manager').show()
+      }
+  });
+</script>

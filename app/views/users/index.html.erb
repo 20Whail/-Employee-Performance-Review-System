@@ -9,7 +9,6 @@
     <p class="lead"> <%= current_user.role%> of Engin Technologies.</p>
   </div>
 </div>
-
 <div class = "container">
   <table class="table table-striped table-hover">
     <thead class="thead-dark ">
@@ -22,12 +21,13 @@
       <th>Role</th>
       <th>Assigned Manager</th>
       <th>Remarks</th>
+
       <th>Action</th>
 
     </tr>
     <tbody>
     <% @users.each do |user| %>
-
+      <%if user.role == "Employee" %>
       <tr>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
@@ -40,67 +40,120 @@
           <td><%=user.assigned_manager %></td>
         <%end %>
 
-        <%if user.surveys.present?%>
-          <td><%=user.surveys.last.remarks%></td>
-        <%else%>
-          <td>No Remarks Added</td>
-        <%end %>
-
-
-        <% if current_user.role == "HR" %>
-          <td> <%= link_to 'Edit User', edit_user_path(id: user.id) ,  class: "btn btn-secondary" %></td>
-          <td><%= link_to 'Delete', user_path(user), method: :delete,  class: "btn btn-danger",  data: { confirm: "Are you sure?" } %></td>
-
-
-          <%if user.surveys.present?%>
-          <td><%= link_to 'View Form', survey_path(id: user.id) ,  class: "btn btn-success" %></td>
-          <%else %>
-          <td><%= link_to 'Form Not Present', root_path ,   class: "btn btn-warning" %></td>
-          <%end %>
-
-        <%end %>
-
-        <% if current_user.role == "Manager" %>
-        <%if user.surveys.present?%>
-          <td><%= link_to 'Employee Filled Form', survey_path(id: user.id) ,  class: "btn btn-success" %></td>
-        <%else %>
-          <td><%= link_to 'Form Not Present', root_path ,   class: "btn btn-warning" %></td>
-        <%end %>
-        <%end %>
-
-        <% if current_user.role == "Manager" %>
-          <%if user.surveys.present?%>
-            <td><%= link_to 'Form for Manager', new_survey_path(user_id: user.id) ,  class: "btn btn-success" %></td>
-          <%else %>
-            <td><%= link_to 'Employee Not Filled Form', root_path ,   class: "btn btn-warning" %></td>
-          <%end %>
-        <%end %>
-
+        <%= render 'surveys', user: user %>
+        <%= render 'hr', user: user, index: true %>
+        <%= render 'manager', user: user %>
 
 
         <td> <%= link_to 'Show User', user_path(id: user.id) ,  class: "btn btn-info" %></td>
       </tr>
+    <%end %>
+  <%end %>
 
-    <% end %>
     </tbody>
   </table>
+<%if current_user.role == "HR" %>
+  <div class = "container">
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark ">
+      <tr>
+        <th>First_name</th>
+        <th>Last_name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Joining_Date</th>
+        <th>Role</th>
+        <th></th>
+        <th></th>
+        <th>Action</th>
 
-    <div>
-      <% if current_user.role == "HR" %>
-        <%= link_to 'Create User', sign_up_path ,  class: "btn btn-primary" %>
-        <%= link_to 'All Review Forms', surveys_path ,  class: "btn btn-primary" %>
-      <% end %>
-    </div>
+      </tr>
+      <tbody>
+      <% @users.each do |user| %>
+        <%if user.role == "Manager" %>
+          <tr>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.phone %></td>
+            <td><%= user.joining_date %></td>
+            <td><%= user.role %></td>
+
+            <%if user.role == "Employee" || "HR"%>
+              <td><%=user.assigned_manager %></td>
+            <%end %>
+
+            <%= render 'surveys', user: user %>
+            <%= render 'hr', user: user, index: true%>
+            <%= render 'manager', user: user %>
 
 
-    <div>
+            <td> <%= link_to 'Show User', user_path(id: user.id) ,  class: "btn btn-info" %></td>
+          </tr>
+        <%end %>
+      <%end %>
+
+      </tbody>
+    </table>
+
+<%end %>
+
+  <div>
+    <% if current_user.role == "HR" %>
+      <%= link_to 'Create User', sign_up_path ,  class: "btn btn-primary" %>
+      <%= link_to 'All Review Forms', surveys_path ,  class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+
+  <div>
     <% if current_user.role == "Employee" %>
       <%= link_to 'Open Form', new_survey_path ,  class: "btn btn-secondary" %>
     <% end %>
-    </div>
+  </div>
 
 
 </div>
+
+        <%#if user.surveys.present?%>
+<!--          <td><%#=user.surveys.last.remarks%></td>-->
+        <%#else%>
+<!--          <td>No Remarks Added</td>-->
+        <%#end %>
+
+
+
+        <%# if current_user.role == "HR" %>
+<!--          <td> <%#= link_to 'Edit User', edit_user_path(id: user.id) ,  class: "btn btn-secondary" %></td>-->
+<!--          <td><%#= link_to 'Delete', user_path(user), method: :delete,  class: "btn btn-danger",  data: { confirm: "Are you sure?" } %></td>-->
+
+
+          <%#if user.surveys.present? && user.role == "Employee"%>
+<!--            <td><%#= link_to 'View Form', survey_path(id: user.id) ,  class: "btn btn-success" %></td>-->
+          <%#else %>
+<!--          <td><%#= link_to 'Form Not Present', root_path ,   class: "btn btn-warning" %></td>-->
+          <%#end %>
+
+        <%#end %>
+
+
+
+        <%# if current_user.role == "Manager" %>
+          <%#if user.surveys.present?%>
+<!--            <td><%#= link_to 'Form for Manager', new_survey_path(user_id: user.id) ,  class: "btn btn-success" %></td>-->
+          <%#else %>
+<!--            <td><%#= link_to 'Employee Not Filled Form', root_path ,   class: "btn btn-warning" %></td>-->
+          <%#end %>
+        <%#end %>
+
+        <%#= render 'hr', user: user %>
+        <%#if current_user.role != "HR" %>
+        <%#if user.surveys.present? && user.role == "Employee"%>
+<!--          <td><%#= link_to 'View Form', survey_path(id: user.id) ,  class: "btn btn-success" %></td>-->
+        <%#else %>
+<!--          <td><%#= link_to 'Form Not Present', root_path ,   class: "btn btn-warning" %></td>-->
+        <%#end %>
+          <%#end %>
 
 
   <%else%>

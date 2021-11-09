@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     post 'sign_up', to: 'users#create'
 
 
-  get 'edit_home', to: 'users#edit'
-  post 'edit_home', to: 'users#update'
+  get 'edit_user', to: 'users#edit'
+  post 'edit_user', to: 'users#update'
   resources :home
   resources :surveys
   resources :users
